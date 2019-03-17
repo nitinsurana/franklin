@@ -4,8 +4,9 @@
   "description": "Project Franklin Software Challenge",
   "main": "src/index.js",
   "scripts": {
-    "test": "mocha",
-    "start": "./node_modules/.bin/nodemon ./src/index.js"
+    "test": "standard && mocha",
+    "start": "./node_modules/.bin/nodemon ./src/index.js",
+    "lint": "./node_modules/.bin/standard"
   },
   "keywords": [
     "franklin",
@@ -26,6 +27,7 @@
     "lodash": "^4.17.11",
     "mocha": "^6.0.2",
     "nyc": "^13.3.0",
-    "shelljs": "^0.8.3"
+    "shelljs": "^0.8.3",
+    "standard": "^12.0.1"
   }
 }

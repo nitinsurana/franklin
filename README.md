@@ -9,6 +9,9 @@ This project uses nodejs and is built using v8.15.0
 - Execute `yarn start`
 - Open `http://localhost:3000/documentation` to view and test the exposed REST endpoints
 
+# Standards
+[Standard.js](https://standardjs.com/) provides the linting, style & formatting standard for this project.
 
+# 
 
  
