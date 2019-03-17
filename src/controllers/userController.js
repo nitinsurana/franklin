@@ -5,7 +5,7 @@ const User = require('../models/User')
 
 exports.getUsers = async (req, reply) => {
     try {
-        const users = await User.find()
+        const users = await User.findAll()
         return users
     } catch (err) {
         throw boom.boomify(err)
