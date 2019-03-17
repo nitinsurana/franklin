@@ -1,3 +1,4 @@
+const path = require('path')
 const userRoutes = require('./routes/user-routes')
 const itemRoutes = require('./routes/item-routes')
 const orderRoutes = require('./routes/order-routes')
@@ -14,6 +15,11 @@ fastify.register(require('fastify-swagger'), swagger.options);
   .forEach((route, index) => {
     fastify.route(route)
   })
+
+fastify.register(require('fastify-static'), {
+  root: path.join(__dirname, 'ui'),
+  prefix: '/ui/', // optional: default '/'
+})
 
 const start = async () => {
   try {
