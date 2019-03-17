@@ -29,10 +29,9 @@ define(['backbone', 'underscore', 'text!template/main.html',
           userCollection: this.userCollection,
           id: id
         })
-        this.userDialogView.$('.modal').modal('show')
         this.userDialogView.on('close', function (data = {}) {
-          self.userDialogView.$('.modal').modal('hide')
           self.userDialogView.$('.modal').on('hidden', () => {
+            self.userDialogView.off()
             self.userDialogView.remove()
             self.userDialogView = null
           })

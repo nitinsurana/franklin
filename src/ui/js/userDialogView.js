@@ -4,8 +4,8 @@ define(['backbone', 'underscore', 'text!template/user-dialog.html', 'js/userMode
   return Backbone.View.extend({
     template: _.template(UserDialogTemplate),
     initialize: function (options) {
-      this.userCollection = options.userCollection
       const self = this
+      this.userCollection = options.userCollection
       if (Number.isInteger(parseInt(options.id))) {
         this.model = this.userCollection.get(options.id)
         this.model.fetch().done(function () {
@@ -23,7 +23,7 @@ define(['backbone', 'underscore', 'text!template/user-dialog.html', 'js/userMode
       const self = this
       this.model.set({
         name: this.$('#name').val(),
-        id: this.$('#id').val()
+        id: this.$('#id').val().length > 0 ? this.$('#id').val() : undefined
       })
       const valid = this.model.save()
       if (valid) {
@@ -37,12 +37,19 @@ define(['backbone', 'underscore', 'text!template/user-dialog.html', 'js/userMode
           .fail(() => {
             self.trigger('close', { type: 'error', message: 'Failure' })
           })
+          .always(() => {
+            self.hideModal()
+          })
       } else {
         self.trigger('close', { type: 'error', message: 'Failure' })
       }
     },
+    hideModal: function () {
+      this.$('.modal').modal('hide')
+    },
     render: function () {
       this.$el.html(this.template({ user: this.model.toJSON() }))
+      this.$('.modal').modal('show')
     }
   })
 })
