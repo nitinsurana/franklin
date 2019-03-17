@@ -6,7 +6,7 @@ define(['backbone', 'underscore', 'text!template/user-dialog.html', 'js/userMode
     initialize: function (options) {
       this.userCollection = options.userCollection
       const self = this
-      if (Number.isInteger(options.id)) {
+      if (Number.isInteger(parseInt(options.id))) {
         this.model = this.userCollection.get(options.id)
         this.model.fetch().done(function () {
           self.render()

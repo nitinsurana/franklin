@@ -9,10 +9,14 @@ define(['backbone', 'underscore', 'text!template/user.html', 'bootstrap'], funct
       this.render()
     },
     events: {
-      'click .add-user': 'addNewUser'
+      'click .add-user': 'addNewUser',
+      'click .edit-user': 'editUser'
     },
     addNewUser: function () {
       this.trigger('addNewUser')
+    },
+    editUser: function (e) {
+      this.trigger('editUser', $(e.currentTarget).attr('data-id'))
     },
     render: function () {
       this.$el.html(this.template({ users: this.userCollection.toJSON() }))

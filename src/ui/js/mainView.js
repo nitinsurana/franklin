@@ -19,13 +19,15 @@ define(['backbone', 'underscore', 'text!template/main.html',
         this.userCollection.fetch().done(() => {
           self.userView = new UserView({ el: self.$('.user-container'), userCollection: self.userCollection })
           self.userView.on('addNewUser', self.showUserDialog.bind(this))
+          self.userView.on('editUser', self.showUserDialog.bind(this))
         })
       },
-      showUserDialog: function () {
+      showUserDialog: function (id) {
         const self = this
         this.userDialogView = new UserDialogView({
           el: this.$('.popup-container').append('<div/>'),
-          userCollection: this.userCollection
+          userCollection: this.userCollection,
+          id: id
         })
         this.userDialogView.$('.modal').modal('show')
         this.userDialogView.on('close', function (data = {}) {

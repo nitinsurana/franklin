@@ -12,7 +12,7 @@
         <thead>
         <tr>
             <td>ID</td>
-            <td>NAME</td>
+            <td colspan="3">NAME</td>
         </tr>
         </thead>
         <tbody>
@@ -20,6 +20,8 @@
         <tr>
             <td><%-u.id%></td>
             <td><%-u.name%></td>
+            <td><button data-id="<%-u.id%>" class="btn-sm edit-user"><i class="fa fa-pencil-alt"></i></button> </td>
+            <td><button data-id="<%-u.id%>" class="btn-sm delete-user"><i class="fa fa-trash-alt"></i></button></td>
         </tr>
         <%}) %>
         </tbody>
