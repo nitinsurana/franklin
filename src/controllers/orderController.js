@@ -27,7 +27,7 @@ exports.getSingleOrder = (req, reply) => {
 
 exports.addOrder = (req, reply) => {
   try {
-    const u = Order.save(req.params.userId, req.body.items)
+    const u = Order.save(req.body.userId, req.body.items)
     if (u == null) {
       reply.code(500).send({ status: 'failure' })
     } else {

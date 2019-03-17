@@ -53,19 +53,16 @@ const routes = [
     handler: orderController.addOrder,
     schema: {
       tags: ['order'],
-      'params': {
-        'type': 'object',
-        'properties': {
-          'userId': {
-            'type': 'integer',
-            'description': 'user id'
-          }
-        }
-      },
       body: {
         type: 'object',
         properties: {
-          item: { type: 'array' }
+          userId: {
+            type: 'integer'
+          },
+          items: {
+            type: 'array',
+            items: { type: 'integer' }
+          }
         }
       },
       response: {
@@ -77,9 +74,9 @@ const routes = [
         },
         200: {
           type: 'object',
+          additionalProperties: true,
           properties: {
-            'id': { type: 'integer' },
-            name: { type: 'string' }
+            'id': { type: 'integer' }
           }
         }
       }
@@ -104,7 +101,10 @@ const routes = [
       body: {
         type: 'object',
         properties: {
-          item: { type: 'array' }
+          items: {
+            type: 'array',
+            items: { type: 'integer' }
+          }
         }
       },
       'response': {

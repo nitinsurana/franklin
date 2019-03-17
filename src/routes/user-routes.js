@@ -85,7 +85,6 @@ const routes = [
     handler: userController.updateUser,
     schema: {
       tags: ['user'],
-      'type': 'object',
       'params': {
         'type': 'object',
         'properties': {
