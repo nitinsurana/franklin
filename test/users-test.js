@@ -1,4 +1,4 @@
-/* global describe, it, after */
+/* global describe, it, before, after */
 // todo add cobertura nyc coverage
 
 const assert = require('assert')
@@ -6,10 +6,16 @@ const _ = require('lodash')
 const shell = require('shelljs')
 
 describe(__filename, () => {
-  shell.exec('cp blank.db test.db')
-  // this makes sure that tests use a temporary test db
-  require('../src/db')({ dbname: 'test.db' })
-  const modelUser = require('../src/models/user')
+  let modelUser
+
+  before(() => {
+    shell.exec('cp -f blank.db test.db')
+    // above makes sure that tests use a temporary test db
+    delete require.cache[require.resolve('../src/db')]
+    delete require.cache[require.resolve('../src/models/user')]
+    require('../src/db')({ dbname: 'test.db' })
+    modelUser = require('../src/models/user')
+  })
 
   after(() => {
     shell.exec('rm -rf test.db*')
@@ -38,7 +44,7 @@ describe(__filename, () => {
     user = modelUser.findById(1)
     assert(_.isEqual({ id: 1, name: 'test-updated' }, user))
 
-    updateCount = modelUser.delete(1)
+    let updateCount = modelUser.delete(1)
     assert(updateCount === 1)
     updateCount = modelUser.delete(1)
     assert(updateCount === 0)

@@ -24,3 +24,6 @@ Install Nodejs and Yarn for your platform.
 - Nodejs event driven model allows asynchronous IO, which is perfect for powering REST APIs (non computative workload).
 - Fastify is faster than expressjs & hence, it's used in this project.
 - Swagger makes sure the API adheres to a contract and exposes API documentation concisely.
+
+# Assumptions
+- An order may contain 0 items

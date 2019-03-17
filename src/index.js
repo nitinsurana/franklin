@@ -1,15 +1,19 @@
-const routes = require('./routes')
+const userRoutes = require('./routes/user-routes')
+const itemRoutes = require('./routes/item-routes')
+const orderRoutes = require('./routes/order-routes')
+
 const swagger = require('../config/swagger')
 
 const fastify = require('fastify')({
   logger: true
 })
 
-fastify.register(require('fastify-swagger'), swagger.options)
+fastify.register(require('fastify-swagger'), swagger.options);
 
-routes.forEach((route, index) => {
-  fastify.route(route)
-})
+[...userRoutes, ...itemRoutes, ...orderRoutes]
+  .forEach((route, index) => {
+    fastify.route(route)
+  })
 
 const start = async () => {
   try {
