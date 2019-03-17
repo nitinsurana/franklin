@@ -1,13 +1,18 @@
 /* global define*/
 
-define(['backbone', 'underscore', 'text!template/user.html', 'js/userCollection', 'bootstrap'], function (Backbone, _, UserTemplate, UserCollection) {
+define(['backbone', 'underscore', 'text!template/user.html', 'bootstrap'], function (Backbone, _, UserTemplate) {
   return Backbone.View.extend({
     template: _.template(UserTemplate),
-    initialize: function () {
-      const userCollection = this.userCollection = new UserCollection()
-      userCollection.fetch().done(() => {
-        this.render()
-      })
+    initialize: function (options) {
+      const userCollection = this.userCollection = options.userCollection
+      userCollection.on('sync', this.render.bind(this))
+      this.render()
+    },
+    events: {
+      'click .add-user': 'addNewUser'
+    },
+    addNewUser: function () {
+      this.trigger('addNewUser')
     },
     render: function () {
       this.$el.html(this.template({ users: this.userCollection.toJSON() }))
