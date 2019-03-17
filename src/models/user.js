@@ -18,7 +18,7 @@ const db = require('../db')()
 //     }
 // }
 
-module.exports = {
+const obj = module.exports = {
   findAll: () => {
     const rows = db.prepare('SELECT * FROM users').all()
     return rows
@@ -31,8 +31,12 @@ module.exports = {
     if (!data) {
       return
     }
-    const changes = db.prepare('insert into users(name) values(?)').run(data.name).changes
-    return changes
+    const info = db.prepare('insert into users(name) values(?)').run(data.name)
+    if (info.changes === 1) {
+      return obj.findById(info.lastInsertRowid)
+    } else {
+      return null;
+    }
   },
   delete: (id) => {
     if (Number.isNaN(id)) {

@@ -2,20 +2,24 @@ const boom = require('boom')
 
 const User = require('../models/User')
 
-exports.getUsers = async (req, reply) => {
+exports.getUsers = (req, reply) => {
   try {
     const users = User.findAll()
-    return users
+    reply.send(users)
   } catch (err) {
     throw boom.boomify(err)
   }
 }
 
-exports.getSingleUser = async (req, reply) => {
+exports.getSingleUser = (req, reply) => {
   try {
     const id = req.params.id
     const user = User.findById(id)
-    return user
+    if (user) {
+      reply.code(200).send(user)
+    } else {
+      reply.code(404).send({ status: 'failure' })
+    }
   } catch (err) {
     throw boom.boomify(err)
   }
@@ -23,15 +27,20 @@ exports.getSingleUser = async (req, reply) => {
 // todo add eslint
 // todo supress warnings for missing semicolons
 
-exports.addUser = async (req, reply) => {
+exports.addUser = (req, reply) => {
   try {
-    return User.save(req.body)
+    const u = User.save(req.body)
+    if (u == null) {
+      reply.code(500).send({ status: 'failure' })
+    } else {
+      reply.code(200).send(u)
+    }
   } catch (err) {
     throw boom.boomify(err)
   }
 }
 
-exports.updateUser = async (req, reply) => {
+exports.updateUser = (req, reply) => {
   try {
     const id = req.params.id
     const update = User.update({ id, name: req.body.name })
@@ -41,7 +50,7 @@ exports.updateUser = async (req, reply) => {
   }
 }
 
-exports.deleteUser = async (req, reply) => {
+exports.deleteUser = (req, reply) => {
   try {
     const id = req.params.id
     const user = User.delete(id)
