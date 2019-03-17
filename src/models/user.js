@@ -1,3 +1,5 @@
+const db = require('../db')()
+
 class User {
     get id() {
         return this._id;
@@ -16,4 +18,10 @@ class User {
     }
 }
 
-module.export = new User();
+module.exports = {
+    find: () => {
+        const rows = db.prepare('SELECT * FROM users').all();
+        console.log(rows);
+        return rows;
+    }
+}
