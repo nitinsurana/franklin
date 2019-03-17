@@ -6,7 +6,8 @@
   "scripts": {
     "test": "standard && mocha",
     "start": "./node_modules/.bin/nodemon ./src/index.js",
-    "lint": "./node_modules/.bin/standard"
+    "lint": "./node_modules/.bin/standard",
+    "coverage": "nyc mocha"
   },
   "keywords": [
     "franklin",

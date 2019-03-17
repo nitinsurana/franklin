@@ -82,7 +82,40 @@ const routes = [
   {
     method: 'PUT',
     url: '/api/users/:id',
-    handler: userController.updateUser
+    handler: userController.updateUser,
+    schema: {
+      tags: ['user'],
+      'type': 'object',
+      'params': {
+        'type': 'object',
+        'properties': {
+          'id': {
+            'type': 'integer',
+            'description': 'user id'
+          }
+        }
+      },
+      body: {
+        type: 'object',
+        properties: {
+          name: { type: 'string' }
+        }
+      },
+      'response': {
+        '200': {
+          'description': 'Successful response',
+          'type': 'object',
+          additionalProperties: true
+        },
+        '404': {
+          'description': 'Failed response',
+          'type': 'object',
+          'properties': {
+            'status': { 'type': 'string' }
+          }
+        }
+      }
+    }
   },
   {
     method: 'DELETE',
@@ -99,18 +132,6 @@ const routes = [
           }
         }
       },
-      'body': {
-        'type': 'object',
-        'properties': {
-          'hello': { 'type': 'string' },
-          'obj': {
-            'type': 'object',
-            'properties': {
-              'some': { 'type': 'string' }
-            }
-          }
-        }
-      },
       'response': {
         '200': {
           'description': 'Successful response',
@@ -118,14 +139,13 @@ const routes = [
           'properties': {
             'status': { 'type': 'string' }
           }
-        }
-      },
-      '4xx': {
-        'description': 'Failed response',
-        'type': 'object',
-        'properties': {
-          'status': { 'type': 'string' },
-          'message': { 'type': 'string' },
+        },
+        '404': {
+          'description': 'Failed response',
+          'type': 'object',
+          'properties': {
+            'status': { 'type': 'string' }
+          }
         }
       }
     }

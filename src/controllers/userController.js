@@ -24,8 +24,6 @@ exports.getSingleUser = (req, reply) => {
     throw boom.boomify(err)
   }
 }
-// todo add eslint
-// todo supress warnings for missing semicolons
 
 exports.addUser = (req, reply) => {
   try {
@@ -43,8 +41,12 @@ exports.addUser = (req, reply) => {
 exports.updateUser = (req, reply) => {
   try {
     const id = req.params.id
-    const update = User.update({ id, name: req.body.name })
-    return update
+    const u = User.update({ id, name: req.body.name })
+    if (u) {
+      reply.code(200).send(u)
+    } else {
+      reply.code(404).send({ status: 'failure' })
+    }
   } catch (err) {
     throw boom.boomify(err)
   }
@@ -53,8 +55,12 @@ exports.updateUser = (req, reply) => {
 exports.deleteUser = (req, reply) => {
   try {
     const id = req.params.id
-    const user = User.delete(id)
-    return user
+    const d = User.delete(id)
+    if (d && d === 1) {
+      reply.code(200).send({ status: 'success' })
+    } else {
+      reply.code(404).send({ status: 'failure' })
+    }
   } catch (err) {
     throw boom.boomify(err)
   }

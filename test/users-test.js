@@ -20,16 +20,16 @@ describe(__filename, () => {
     assert(Array.isArray(arr))
     assert.strictEqual(0, arr.length)
 
-    let updateCount = modelUser.save({ name: 'test1' })
-    assert(updateCount === 1)
+    let user = modelUser.save({ name: 'test1' })
+    assert.strictEqual('number', typeof user.id)
     modelUser.save({ name: 'test2' })
-    assert(updateCount === 1)
+    assert.strictEqual('number', typeof user.id)
 
     arr = modelUser.findAll()
     assert(Array.isArray(arr))
     assert.strictEqual(2, arr.length)
 
-    let user = modelUser.findById(1)
+    user = modelUser.findById(1)
     assert(_.isEqual({ id: 1, name: 'test1' }, user))
     user = modelUser.findById(2)
     assert(_.isEqual({ id: 2, name: 'test2' }, user))

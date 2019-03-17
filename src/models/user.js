@@ -35,7 +35,7 @@ const obj = module.exports = {
     if (info.changes === 1) {
       return obj.findById(info.lastInsertRowid)
     } else {
-      return null;
+      return null
     }
   },
   delete: (id) => {
@@ -50,6 +50,6 @@ const obj = module.exports = {
       return
     }
     db.prepare('update users set name=? where id=?').run(data.name, data.id)
-    return module.exports.findById(data.id)
+    return obj.findById(data.id)
   }
 }
