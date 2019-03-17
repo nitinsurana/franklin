@@ -26,8 +26,7 @@ exports.getSingleUser = async (req, reply) => {
 
 exports.addUser = async (req, reply) => {
     try {
-        const user = new User(req.body)
-        return user.save()
+        return User.save(req.body)
     } catch (err) {
         throw boom.boomify(err)
     }
@@ -50,7 +49,7 @@ exports.updateUser = async (req, reply) => {
 exports.deleteUser = async (req, reply) => {
     try {
         const id = req.params.id
-        const user = await User.findByIdAndRemove(id)
+        const user = await User.delete(id)
         return user
     } catch (err) {
         throw boom.boomify(err)
