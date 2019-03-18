@@ -1,5 +1,5 @@
 const boom = require('boom')
-
+const request = require('request')
 const User = require('../models/User')
 
 exports.getUsers = (req, reply) => {
@@ -25,9 +25,10 @@ exports.getSingleUser = (req, reply) => {
   }
 }
 
-exports.addUser = (req, reply) => {
+exports.addUser = async (req, reply) => {
   try {
-    const u = User.save(req.body)
+    const avatar = await generateAvatar(req.body.name)
+    const u = User.save({ ...req.body, avatar })
     if (u == null) {
       reply.code(500).send({ status: 'failure' })
     } else {
@@ -64,4 +65,18 @@ exports.deleteUser = (req, reply) => {
   } catch (err) {
     throw boom.boomify(err)
   }
+}
+
+function generateAvatar (name) {
+  return new Promise((resolve, reject) => {
+    request('http://www.colr.org/json/color/random', (err, resp, body) => {
+      if (err) {
+        return reject(err)
+      }
+      body = JSON.parse(body)
+      const color = body.new_color || '0D8ABC'
+      const avatar = `https://ui-avatars.com/api/?name=${name}&background=${color}&color=fff&rounded=true`
+      resolve(avatar)
+    })
+  })
 }

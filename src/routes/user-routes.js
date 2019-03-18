@@ -38,7 +38,8 @@ const routes = [
           type: 'object',
           properties: {
             id: { type: 'integer' },
-            name: { type: 'string' }
+            name: { type: 'string' },
+            avatar: { type: 'string' }
           }
         },
         404: {
@@ -73,7 +74,8 @@ const routes = [
           type: 'object',
           properties: {
             'id': { type: 'integer' },
-            name: { type: 'string' }
+            name: { type: 'string' },
+            avatar: { type: 'string' }
           }
         }
       }

@@ -24,8 +24,6 @@ Install Nodejs and Yarn for your platform/OS
 - Due to time constraints, a minimal front-end is created using [React.js](https://reactjs.org) and is available at [http://localhost:3000/](http://localhost:3000/)
 - [Bootstrap](https://getbootstrap.com/) is used as the front-end library
 
-
-
 # Stack Details
 - Nodejs event driven model allows asynchronous IO, which is perfect for powering REST APIs (non computative workload).
 - Fastify is faster than expressjs & hence, it's used in this project.
@@ -33,3 +31,7 @@ Install Nodejs and Yarn for your platform/OS
 
 # Assumptions
 - An order may contain 0 items
+
+# Extra Features
+- User avatar is generated dynamically using his name and is saved in db
+

@@ -4,7 +4,7 @@
   "description": "Project Franklin Software Challenge",
   "main": "src/index.js",
   "scripts": {
-    "test": "standard && mocha",
+    "test": "standard --fix && mocha",
     "start": "./node_modules/.bin/nodemon ./src/index.js",
     "lint": "./node_modules/.bin/standard",
     "coverage": "nyc mocha"
@@ -23,7 +23,8 @@
     "fastify": "^2.1.0",
     "fastify-static": "^2.3.4",
     "fastify-swagger": "^2.3.2",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "request": "^2.88.0"
   },
   "devDependencies": {
     "lodash": "^4.17.11",

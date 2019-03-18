@@ -1,12 +1,11 @@
 /* global define */
 
-define(['backbone', 'underscore', 'jquery','text!template/main.html',
+define(['backbone', 'underscore', 'jquery', 'text!template/main.html',
   'js/userCollection',
   'js/userView',
   'js/userDialogView',
   'js/alertView',
-  'bootstrap'],
-function (Backbone, _, $, MainTemplate, UserCollection, UserView, UserDialogView, AlertView) {
+  'bootstrap'], function (Backbone, _, $, MainTemplate, UserCollection, UserView, UserDialogView, AlertView) {
   return Backbone.View.extend({
     template: _.template(MainTemplate),
     initialize: function () {
@@ -24,8 +23,8 @@ function (Backbone, _, $, MainTemplate, UserCollection, UserView, UserDialogView
     },
     showUserDialog: function (id) {
       const self = this
-      const $div = $('<div></div>');
-      this.$('.popup-container').append($div);
+      const $div = $('<div></div>')
+      this.$('.popup-container').append($div)
       this.userDialogView = new UserDialogView({
         el: $div,
         userCollection: this.userCollection,

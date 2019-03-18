@@ -1,6 +1,6 @@
-/* global define*/
+/* global define */
 
-define(['backbone', 'underscore', 'text!template/user.html', 'js/userCollection', 'bootstrap'], function (Backbone, _, UserTemplate, UserCollection) {
+define(['backbone', 'underscore', 'jquery', 'bootstrap'], function (Backbone, _, $) {
   return Backbone.Model.extend({
     urlRoot: '/api/users'
   })

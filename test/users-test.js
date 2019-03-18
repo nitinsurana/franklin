@@ -36,13 +36,13 @@ describe(__filename, () => {
     assert.strictEqual(2, arr.length)
 
     user = modelUser.findById(1)
-    assert(_.isEqual({ id: 1, name: 'test1' }, user))
+    assert(_.isEqual({ id: 1, name: 'test1', avatar: null }, user))
     user = modelUser.findById(2)
-    assert(_.isEqual({ id: 2, name: 'test2' }, user))
+    assert(_.isEqual({ id: 2, name: 'test2', avatar: null }, user))
 
     modelUser.update({ id: 1, name: 'test-updated' })
     user = modelUser.findById(1)
-    assert(_.isEqual({ id: 1, name: 'test-updated' }, user))
+    assert(_.isEqual({ id: 1, name: 'test-updated', avatar: null }, user))
 
     let updateCount = modelUser.delete(1)
     assert(updateCount === 1)

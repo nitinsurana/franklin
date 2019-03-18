@@ -35,10 +35,10 @@ define(['backbone', 'underscore', 'text!template/user-dialog.html', 'js/userMode
             self.hideModal({ type: 'success', message: 'Success' })
           })
           .fail(() => {
-            self.hideModal({ type: 'error', message: 'Failure' })
+            self.hideModal({ type: 'danger', message: 'Failure' })
           })
       } else {
-        self.hideModal({ type: 'error', message: 'Failure' })
+        self.hideModal({ type: 'danger', message: 'Failure' })
       }
     },
     hideModal: function (data) {

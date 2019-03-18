@@ -13,7 +13,7 @@ const obj = module.exports = {
     if (!data) {
       return
     }
-    const info = db.prepare('insert into users(name) values(?)').run(data.name)
+    const info = db.prepare('insert into users(name,avatar) values(?,?)').run(data.name, data.avatar)
     if (info.changes === 1) {
       return obj.findById(info.lastInsertRowid)
     } else {
