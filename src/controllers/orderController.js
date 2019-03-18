@@ -1,6 +1,6 @@
 const boom = require('boom')
 
-const Order = require('../models/Order')
+const Order = require('../models/order')
 
 exports.getOrders = (req, reply) => {
   try {

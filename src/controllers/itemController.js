@@ -1,6 +1,6 @@
 const boom = require('boom')
 
-const Item = require('../models/Item')
+const Item = require('../models/item')
 
 exports.getItems = (req, reply) => {
   try {

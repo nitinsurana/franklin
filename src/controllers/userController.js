@@ -1,6 +1,6 @@
 const boom = require('boom')
 const request = require('request')
-const User = require('../models/User')
+const User = require('../models/user')
 
 exports.getUsers = (req, reply) => {
   try {
