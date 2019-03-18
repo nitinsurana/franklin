@@ -1,6 +1,7 @@
 # franklin
 
-This project uses nodejs and is built using version v8.15.0
+This project uses nodejs and is built using version v8.15.0.
+It is not production ready as it lacks validations, metrics and cicd pipeline.
 
 # Start the app
 Install Nodejs and Yarn for your platform/OS
