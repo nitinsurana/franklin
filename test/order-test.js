@@ -23,7 +23,7 @@ describe(__filename, () => {
   })
 
   after(() => {
-    shell.exec('rm -rf test.db*')
+    // shell.exec('rm -rf test.db*')
   })
 
   it('should allow crud on order', () => {
@@ -33,15 +33,19 @@ describe(__filename, () => {
 
     const itemIds = items.map(m => m.id)
     let order = modelOrder.save(userId, itemIds)
+    assert.strictEqual(1, order.id)
     assert.strictEqual('number', typeof order.id)
     assert(order.items.length === 3)
     order = modelOrder.save(1, itemIds.slice(1))
+    assert.strictEqual(2, order.id)
     assert.strictEqual('number', typeof order.id)
     assert(order.items.length === 2)
 
     arr = modelOrder.findAll()
     assert(Array.isArray(arr))
     assert.strictEqual(2, arr.length)
+    assert(arr[0].itemCount === 3)
+    assert(arr[1].itemCount === 2)
 
     order = modelOrder.findById(1)
     assert(_.isEqual({

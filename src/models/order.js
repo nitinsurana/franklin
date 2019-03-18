@@ -2,7 +2,7 @@ const db = require('../db')()
 
 const obj = module.exports = {
   findAll: () => {
-    const rows = db.prepare('SELECT * FROM orders').all()
+    const rows = db.prepare('SELECT o.*,(select count(*) from order_items i where i.order_id=o.id) itemCount FROM orders o order by o.id').all()
     return rows
   },
   findById: id => {

@@ -9,7 +9,7 @@ const fastify = require('fastify')({
   logger: true
 })
 
-fastify.register(require('fastify-swagger'), swagger.options);
+fastify.register(require('fastify-swagger'), swagger.options)
 fastify.register(require('fastify-static'), {
   root: path.join(__dirname, 'ui'),
   prefix: '/ui/' // optional: default '/'

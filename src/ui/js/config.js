@@ -13,7 +13,8 @@ requirejs.config({
     underscore: ['https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min'],
     jquery: ['https://code.jquery.com/jquery-3.3.1.min'],
     bootstrap: ['https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min'],
-    text: ['https://cdnjs.cloudflare.com/ajax/libs/require-text/2.0.12/text.min']
+    text: ['https://cdnjs.cloudflare.com/ajax/libs/require-text/2.0.12/text.min'],
+    select2: ['https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js']
   },
   shim: {
     'bootstrap': {

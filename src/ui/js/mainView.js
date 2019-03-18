@@ -3,12 +3,15 @@
 define(['backbone', 'underscore', 'jquery', 'text!template/main.html',
   'js/itemCollection',
   'js/userCollection',
+  'js/orderCollection',
   'js/itemView',
   'js/userView',
+  'js/orderView',
   'js/itemDialogView',
   'js/userDialogView',
+  'js/orderDialogView',
   'js/alertView',
-  'bootstrap'], function (Backbone, _, $, MainTemplate, ItemCollection, UserCollection, ItemView, UserView, ItemDialogView, UserDialogView, AlertView) {
+  'bootstrap'], function (Backbone, _, $, MainTemplate, ItemCollection, UserCollection, OrderCollection, ItemView, UserView, OrderView, ItemDialogView, UserDialogView, OrderDialogView, AlertView) {
   return Backbone.View.extend({
     template: _.template(MainTemplate),
     initialize: function () {
@@ -18,6 +21,7 @@ define(['backbone', 'underscore', 'jquery', 'text!template/main.html',
       this.$el.html(this.template())
       this.renderUsers()
       this.renderItems()
+      this.renderOrders()
     },
     renderUsers: function () {
       const self = this
@@ -35,6 +39,15 @@ define(['backbone', 'underscore', 'jquery', 'text!template/main.html',
         self.itemView = new ItemView({ el: self.$('.item-container'), itemCollection: self.itemCollection })
         self.itemView.on('addNewItem', self.showItemDialog.bind(this))
         self.itemView.on('editItem', self.showItemDialog.bind(this))
+      })
+    },
+    renderOrders: function () {
+      const self = this
+      this.orderCollection = new OrderCollection()
+      this.orderCollection.fetch().done(() => {
+        self.orderView = new OrderView({ el: self.$('.order-container'), orderCollection: self.orderCollection })
+        self.orderView.on('addNewOrder', self.showOrderDialog.bind(this))
+        self.orderView.on('editOrder', self.showOrderDialog.bind(this))
       })
     },
     showItemDialog: function (id) {

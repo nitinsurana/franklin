@@ -9,8 +9,11 @@ const routes = [
       tags: ['order'],
       response: {
         200: {
-          type: 'object',
-          additionalProperties: true
+          type: 'array',
+          items: {
+            type: 'object',
+            additionalProperties: true
+          }
         }
       }
     }
