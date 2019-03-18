@@ -3,6 +3,10 @@
 This project uses nodejs and is built using version v8.15.0.
 It is not production ready as it lacks validations, metrics and cicd pipeline.
 
+A deployed version of the app on ec2 can be found below 
+- [API](http://ec2-34-227-18-204.compute-1.amazonaws.com:3000/documentation/static/index.html)
+- [UI](http://ec2-34-227-18-204.compute-1.amazonaws.com:3000/)
+
 # Start the app
 Install Nodejs and Yarn for your platform/OS
 - Clone this repo using git
