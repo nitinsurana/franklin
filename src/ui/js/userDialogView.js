@@ -1,4 +1,4 @@
-/* global define*/
+/* global define */
 
 define(['backbone', 'underscore', 'text!template/user-dialog.html', 'js/userModel', 'bootstrap'], function (Backbone, _, UserDialogTemplate, UserModel) {
   return Backbone.View.extend({

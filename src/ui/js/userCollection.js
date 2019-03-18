@@ -1,4 +1,4 @@
-/* global define*/
+/* global define */
 
 define(['backbone', 'underscore',
   'js/userModel',
