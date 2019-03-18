@@ -1,12 +1,12 @@
 /* global define */
 
-define(['backbone', 'underscore', 'text!template/main.html',
+define(['backbone', 'underscore', 'jquery','text!template/main.html',
   'js/userCollection',
   'js/userView',
   'js/userDialogView',
   'js/alertView',
   'bootstrap'],
-function (Backbone, _, MainTemplate, UserCollection, UserView, UserDialogView, AlertView) {
+function (Backbone, _, $, MainTemplate, UserCollection, UserView, UserDialogView, AlertView) {
   return Backbone.View.extend({
     template: _.template(MainTemplate),
     initialize: function () {
@@ -24,17 +24,17 @@ function (Backbone, _, MainTemplate, UserCollection, UserView, UserDialogView, A
     },
     showUserDialog: function (id) {
       const self = this
+      const $div = $('<div></div>');
+      this.$('.popup-container').append($div);
       this.userDialogView = new UserDialogView({
-        el: this.$('.popup-container').append('<div/>'),
+        el: $div,
         userCollection: this.userCollection,
         id: id
       })
       this.userDialogView.on('close', function (data = {}) {
-        self.userDialogView.$('.modal').on('hidden', () => {
-          self.userDialogView.off()
-          self.userDialogView.remove()
-          self.userDialogView = null
-        })
+        self.userDialogView.off()
+        self.userDialogView.remove()
+        self.userDialogView = null
         self.alertView = new AlertView({ ...data, el: self.$('.alert-container').append('<div/>') })
       })
     }

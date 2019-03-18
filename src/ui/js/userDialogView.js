@@ -32,20 +32,21 @@ define(['backbone', 'underscore', 'text!template/user-dialog.html', 'js/userMode
             if (self.model.id) {
               self.userCollection.add(self.model)
             }
-            self.trigger('close', { type: 'success', message: 'Success' })
+            self.hideModal({ type: 'success', message: 'Success' })
           })
           .fail(() => {
-            self.trigger('close', { type: 'error', message: 'Failure' })
-          })
-          .always(() => {
-            self.hideModal()
+            self.hideModal({ type: 'error', message: 'Failure' })
           })
       } else {
-        self.trigger('close', { type: 'error', message: 'Failure' })
+        self.hideModal({ type: 'error', message: 'Failure' })
       }
     },
-    hideModal: function () {
+    hideModal: function (data) {
+      const self = this
       this.$('.modal').modal('hide')
+      this.$('.modal').on('hidden.bs.modal', () => {
+        self.trigger('close', data)
+      })
     },
     render: function () {
       this.$el.html(this.template({ user: this.model.toJSON() }))
