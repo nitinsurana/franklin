@@ -10,15 +10,18 @@ const fastify = require('fastify')({
 })
 
 fastify.register(require('fastify-swagger'), swagger.options);
+fastify.register(require('fastify-static'), {
+  root: path.join(__dirname, 'ui'),
+  prefix: '/ui/' // optional: default '/'
+});
 
 [...userRoutes, ...itemRoutes, ...orderRoutes]
   .forEach((route, index) => {
     fastify.route(route)
   })
 
-fastify.register(require('fastify-static'), {
-  root: path.join(__dirname, 'ui'),
-  prefix: '/ui/' // optional: default '/'
+fastify.get('/', (req, reply) => {
+  reply.redirect(302, '/ui/')
 })
 
 const start = async () => {

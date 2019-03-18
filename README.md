@@ -20,6 +20,7 @@ Install Nodejs and Yarn for your platform/OS
 - The database is sqlite and the client used is [better-sqlite3](https://github.com/JoshuaWise/better-sqlite3)
 - BDD tests are written using [Mocha](https://mochajs.org/)
 - Code coverage is powered by [nyc](https://github.com/istanbuljs/nyc)
+- The project users [nodemon](https://nodemon.io/) to restart the node process as soon as code changes, which helps in faster development
 ## Frontend
 - Due to time constraints, a minimal front-end is created using [Backbonet.js](https://backbonejs.org/) & [Require.js](https://requirejs.org/) and is available at [**http://localhost:3000/ui/**](http://localhost:3000/ui/)
 - [Bootstrap](https://getbootstrap.com/) is used as the front-end library
