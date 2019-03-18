@@ -26,7 +26,7 @@ fastify.get('/', (req, reply) => {
 
 const start = async () => {
   try {
-    await fastify.listen(3000)
+    await fastify.listen(3000, '0.0.0.0')
     fastify.swagger()
     fastify.log.info(`listening on ${fastify.server.address().port}`)
     fastify.log.info(`server listening on ${fastify.server.address().port}`)
