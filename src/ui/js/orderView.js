@@ -28,7 +28,6 @@ define(['backbone', 'underscore', 'text!template/order.html', 'select2', 'bootst
     },
     render: function () {
       this.$el.html(this.template({ orders: this.orderCollection.toJSON() }))
-      this.$('select').select2()
     }
   })
 })

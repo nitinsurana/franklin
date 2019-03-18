@@ -1,6 +1,6 @@
 /* global define */
 
-define(['backbone', 'underscore', 'text!template/order-dialog.html', 'js/orderModel', 'bootstrap'], function (Backbone, _, OrderDialogTemplate, OrderModel) {
+define(['backbone', 'underscore', 'text!template/order-dialog.html', 'js/orderModel', 'select2', 'bootstrap'], function (Backbone, _, OrderDialogTemplate, OrderModel) {
   return Backbone.View.extend({
     template: _.template(OrderDialogTemplate),
     initialize: function (options) {
@@ -26,7 +26,8 @@ define(['backbone', 'underscore', 'text!template/order-dialog.html', 'js/orderMo
       this.model.set({
         user_id: this.$('#users').val(),
         id: this.$('#id').val().length > 0 ? this.$('#id').val() : undefined,
-        items: this.$('#items').val()
+        items: this.$('#items').val(),
+        itemCount: this.$('#items').val().length
       })
       const valid = this.model.save()
       if (valid) {
@@ -58,6 +59,9 @@ define(['backbone', 'underscore', 'text!template/order-dialog.html', 'js/orderMo
         items: this.itemCollection.toJSON()
       }))
       this.$('.modal').modal('show')
+      this.$('select').select2({
+        width: '70%'
+      })
     }
   })
 })

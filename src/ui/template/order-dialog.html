@@ -14,7 +14,7 @@
                         <label for="users">Select A User</label>
                         <select name="users" id="users">
                             <% users.forEach(u=> {%>
-                            <option value="<%-u.id%>"><%-u.name%></option>
+                            <option <%-order.user_id===u.id? 'selected':''%> value="<%-u.id%>"><%-u.name%></option>
                             <%})%>
                         </select>
                     </div>
@@ -22,7 +22,7 @@
                         <label for="items">Select Items</label>
                         <select name="items" id="items" multiple>
                             <% items.forEach(i=> {%>
-                            <option value="<%-i.id%>"><%-i.name%></option>
+                            <option <%-order.items && order.items.find(oi=>oi.item_id===i.id)? 'selected':''%> value="<%-i.id%>"><%-i.name%></option>
                             <%})%>
                         </select>
                     </div>
