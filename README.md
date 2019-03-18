@@ -21,7 +21,7 @@ Install Nodejs and Yarn for your platform/OS
 - BDD tests are written using [Mocha](https://mochajs.org/)
 - Code coverage is powered by [nyc](https://github.com/istanbuljs/nyc)
 ## Frontend
-- Due to time constraints, a minimal front-end is created using [React.js](https://reactjs.org) and is available at [http://localhost:3000/](http://localhost:3000/)
+- Due to time constraints, a minimal front-end is created using [Backbonet.js](https://backbonejs.org/) & [Require.js](https://requirejs.org/) and is available at [**http://localhost:3000/ui/**](http://localhost:3000/ui/)
 - [Bootstrap](https://getbootstrap.com/) is used as the front-end library
 
 # Stack Details
