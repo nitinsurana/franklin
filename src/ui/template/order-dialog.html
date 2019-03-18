@@ -2,24 +2,35 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">User</h5>
+                <h5 class="modal-title">Order</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <form onsubmit="return false;">
-                    <input type="hidden" name="id" value="<%-user.id%>" id="id">
+                    <input type="hidden" name="id" value="<%-order.id%>" id="id">
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Enter name"
-                               value="<%-user.name%>">
+                        <label for="users">Select A User</label>
+                        <select name="users" id="users">
+                            <% users.forEach(u=> {%>
+                            <option value="<%-u.id%>"><%-u.name%></option>
+                            <%})%>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="items">Select Items</label>
+                        <select name="items" id="items" multiple>
+                            <% items.forEach(i=> {%>
+                            <option value="<%-i.id%>"><%-i.name%></option>
+                            <%})%>
+                        </select>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="save-user btn btn-primary">Save changes</button>
+                <button type="button" class="save-order btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>

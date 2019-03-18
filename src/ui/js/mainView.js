@@ -45,9 +45,32 @@ define(['backbone', 'underscore', 'jquery', 'text!template/main.html',
       const self = this
       this.orderCollection = new OrderCollection()
       this.orderCollection.fetch().done(() => {
-        self.orderView = new OrderView({ el: self.$('.order-container'), orderCollection: self.orderCollection })
+        self.orderView = new OrderView({
+          el: self.$('.order-container'),
+          orderCollection: self.orderCollection,
+          itemCollection: self.itemCollection,
+          userCollection: self.userCollection
+        })
         self.orderView.on('addNewOrder', self.showOrderDialog.bind(this))
         self.orderView.on('editOrder', self.showOrderDialog.bind(this))
+      })
+    },
+    showOrderDialog: function (id) {
+      const self = this
+      const $div = $('<div></div>')
+      this.$('.popup-container').append($div)
+      this.orderDialogView = new OrderDialogView({
+        el: $div,
+        orderCollection: this.orderCollection,
+        userCollection: this.userCollection,
+        itemCollection: this.itemCollection,
+        id: id
+      })
+      this.orderDialogView.on('close', function (data = {}) {
+        self.orderDialogView.off()
+        self.orderDialogView.remove()
+        self.orderDialogView = null
+        self.alertView = new AlertView({ ...data, el: self.$('.alert-container').append('<div/>') })
       })
     },
     showItemDialog: function (id) {

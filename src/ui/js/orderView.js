@@ -1,6 +1,6 @@
 /* global define, $ */
 
-define(['backbone', 'underscore', 'text!template/order.html', 'bootstrap'], function (Backbone, _, OrderTemplate) {
+define(['backbone', 'underscore', 'text!template/order.html', 'select2', 'bootstrap'], function (Backbone, _, OrderTemplate) {
   return Backbone.View.extend({
     template: _.template(OrderTemplate),
     initialize: function (options) {
@@ -28,6 +28,7 @@ define(['backbone', 'underscore', 'text!template/order.html', 'bootstrap'], func
     },
     render: function () {
       this.$el.html(this.template({ orders: this.orderCollection.toJSON() }))
+      this.$('select').select2()
     }
   })
 })

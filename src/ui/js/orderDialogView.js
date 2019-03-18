@@ -6,6 +6,8 @@ define(['backbone', 'underscore', 'text!template/order-dialog.html', 'js/orderMo
     initialize: function (options) {
       const self = this
       this.orderCollection = options.orderCollection
+      this.itemCollection = options.itemCollection
+      this.userCollection = options.userCollection
       if (Number.isInteger(parseInt(options.id))) {
         this.model = this.orderCollection.get(options.id)
         this.model.fetch().done(function () {
@@ -22,8 +24,9 @@ define(['backbone', 'underscore', 'text!template/order-dialog.html', 'js/orderMo
     save: function () {
       const self = this
       this.model.set({
-        name: this.$('#name').val(),
-        id: this.$('#id').val().length > 0 ? this.$('#id').val() : undefined
+        user_id: this.$('#users').val(),
+        id: this.$('#id').val().length > 0 ? this.$('#id').val() : undefined,
+        items: this.$('#items').val()
       })
       const valid = this.model.save()
       if (valid) {
@@ -49,7 +52,11 @@ define(['backbone', 'underscore', 'text!template/order-dialog.html', 'js/orderMo
       })
     },
     render: function () {
-      this.$el.html(this.template({ order: this.model.toJSON() }))
+      this.$el.html(this.template({
+        order: this.model.toJSON(),
+        users: this.userCollection.toJSON(),
+        items: this.itemCollection.toJSON()
+      }))
       this.$('.modal').modal('show')
     }
   })
