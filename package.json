@@ -27,7 +27,7 @@
     "request": "^2.88.0"
   },
   "devDependencies": {
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "mocha": "^6.0.2",
     "nyc": "^13.3.0",
     "shelljs": "^0.8.3",
